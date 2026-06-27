@@ -111,7 +111,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="bg-section pt-24 md:pt-32 pb-16 md:pb-24 relative overflow-hidden">
+    <section id="services" className="bg-section  py-12 md:py-20 relative overflow-hidden">
       {/* Decorative Blur */}
       <div className="absolute top-1/2 left-0 w-[20%] h-[30%] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 

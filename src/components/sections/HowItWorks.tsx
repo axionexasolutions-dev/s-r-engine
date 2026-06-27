@@ -53,7 +53,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section id="how-it-works" className="bg-section pt-5 pb-16 md:pb-24 relative overflow-hidden">
+    <section id="how-it-works" className="bg-section py-12 md:py-20 relative overflow-hidden">
       {/* Background Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 

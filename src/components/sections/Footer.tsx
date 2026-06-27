@@ -98,12 +98,6 @@ export default function Footer() {
                 <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-slate-600" /> Sunday</span>
                 <span className="text-slate-500 font-semibold">Closed</span>
               </li>
-              <li className="bg-slate-900 rounded-lg p-2.5 mt-2 border border-slate-800 flex flex-col justify-center">
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Contact Number</span>
-                <a href="tel:+447454055461" className="text-xs font-bold text-secondary flex items-center gap-1 hover:text-white mt-0.5">
-                  <Phone className="w-3.5 h-3.5" /> +44 7454 055461
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -115,9 +109,9 @@ export default function Footer() {
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
                 <span className="text-slate-300 leading-relaxed">
-                  Wolverhampton Road<br />
-                  Heath Town<br />
-                  Wolverhampton<br />
+                  Wolverhampton Road,
+                  Heath Town,
+                  Wolverhampton,
                   WV10 0QQ
                 </span>
               </div>
@@ -127,9 +121,13 @@ export default function Footer() {
                   sammechanics@hotmail.com
                 </a>
               </div>
+              <div className="flex items-center gap-2 pt-1.5">
+                <Phone className="w-4 h-4 text-secondary flex-shrink-0" />
+                <a href="tel:+447454055461" className="hover:text-white text-slate-300">
+                  +44 7454 055461
+                </a>
+              </div>
             </div>
-
-            
           </div>
 
         </div>
@@ -138,9 +136,8 @@ export default function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
           <p>© {currentYear} S&R Engine & Diagnostics Ltd. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="#" className="hover:text-white transition-colors">Sitemap</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
 

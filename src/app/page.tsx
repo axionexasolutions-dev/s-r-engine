@@ -5,9 +5,8 @@ import Services from "@/components/sections/Services";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Gallery from "@/components/sections/Gallery";
-import About from "@/components/sections/About";
-import BookingSection from "@/components/sections/BookingSection";
 import Testimonials from "@/components/sections/Testimonials";
+import FAQ from "@/components/sections/FAQ";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -21,8 +20,8 @@ export default function Home() {
         <HowItWorks />
         <Gallery />
         {/* <About /> */}
-        {/* <BookingSection /> */}
-        {/* <Testimonials /> */}
+        <Testimonials />
+        <FAQ />
       </main>
       <Footer />
     </>

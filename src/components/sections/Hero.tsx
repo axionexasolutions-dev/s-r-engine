@@ -7,20 +7,20 @@ import { CheckCircle2, ChevronRight, Activity, Cpu, ShieldCheck } from "lucide-r
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
-  const [experience, setExperience] = React.useState(8);
+  const [experience, setExperience] = React.useState(25);
   const [accuracy, setAccuracy] = React.useState(92.0);
 
   React.useEffect(() => {
-    // Experience counter: counts from 8 to 15
+    // Experience counter: counts from 25 to 37
     const expDuration = 1200;
-    const expSteps = 15 - 8;
+    const expSteps = 37 - 25;
     const expStepTime = expDuration / expSteps;
     
-    let currentExp = 8;
+    let currentExp = 25;
     const expTimer = setInterval(() => {
       currentExp += 1;
-      if (currentExp >= 15) {
-        currentExp = 15;
+      if (currentExp >= 37) {
+        currentExp = 37;
         clearInterval(expTimer);
       }
       setExperience(currentExp);
@@ -66,7 +66,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative pt-24 md:pt-32 bg-background overflow-hidden"
+      className="relative pt-24 md:pt-32 pb-7 bg-background overflow-hidden"
     >
       {/* Decorative background shapes */}
       <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-gradient-to-b from-primary/5 to-transparent rounded-full blur-3xl pointer-events-none" />

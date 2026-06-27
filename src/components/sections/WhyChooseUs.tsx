@@ -29,11 +29,11 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section id="why-choose-us" className="bg-background  pb-16 md:pb-24 relative overflow-hidden">
+    <section id="why-choose-us" className="bg-background pb-16 md:pb-24 relative overflow-hidden">
       {/* Background radial highlight */}
       <div className="absolute bottom-0 right-0 w-[40%] h-[40%] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-2 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Text Column */}
@@ -81,7 +81,7 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="space-y-4 pt-2 border-t border-border"
             >
-              <h4 className="text-xs font-bold text-heading dark:text-white uppercase tracking-wider">
+              <h4 className="text-base font-bold text-heading dark:text-white uppercase tracking-wider">
                 Our Root-Cause Method
               </h4>
               <div className="space-y-4">
@@ -96,21 +96,16 @@ export default function WhyChooseUs() {
                     title: "Component-Level Testing",
                     desc: "Using digital oscilloscopes, we measure electrical signals directly at the sensor or actuator to verify physical failure."
                   },
-                  {
-                    step: "03",
-                    title: "Post-Repair Quality Sweep",
-                    desc: "After fitting parts, we perform a second full diagnostic cycle to ensure all fault codes are cleared and systems are in sync."
-                  }
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-4 items-start">
-                    <span className="text-xs font-bold text-secondary bg-secondary/10 px-2 py-1 rounded-md mt-0.5">
+                    <span className="text-base font-bold text-secondary bg-secondary/10 px-2 py-1 rounded-md mt-0.5">
                       {item.step}
                     </span>
                     <div className="space-y-1">
-                      <h5 className="text-sm font-bold text-heading dark:text-white leading-none">
+                      <h5 className="text-base font-bold text-heading dark:text-white leading-none">
                         {item.title}
                       </h5>
-                      <p className="text-xs text-body-text leading-relaxed">
+                      <p className="text-base text-body-text leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -131,8 +126,8 @@ export default function WhyChooseUs() {
                 <HeartHandshake className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-sm font-bold text-heading dark:text-white">100% Satisfaction Guarantee</p>
-                <p className="text-xs text-body-text">We don&apos;t charge diagnostic fee if we cannot trace your fault.</p>
+                <p className="text-base font-bold text-heading dark:text-white">100% Satisfaction Guarantee</p>
+                <p className="text-base text-body-text">We don&apos;t charge diagnostic fee if we cannot trace fault.</p>
               </div>
             </motion.div>
           </div>

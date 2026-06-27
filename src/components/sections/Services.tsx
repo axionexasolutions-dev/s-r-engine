@@ -115,7 +115,7 @@ export default function Services() {
       {/* Decorative Blur */}
       <div className="absolute top-1/2 left-0 w-[20%] h-[30%] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-2 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <motion.h2

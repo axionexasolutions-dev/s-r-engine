@@ -63,6 +63,8 @@ export default function Navbar() {
       setActiveSection("services");
     } else if (pathname === "/about") {
       setActiveSection("about");
+    } else if (pathname === "/contact") {
+      setActiveSection("contact");
     } else if (pathname === "/") {
       setActiveSection("hero");
     }
@@ -89,12 +91,13 @@ export default function Navbar() {
     { name: "Home", href: "/", id: "hero" },
     { name: "About", href: "/about", id: "about" },
     { name: "Service", href: "/services", id: "services" },
-    { name: "Contact", href: "/#contact", id: "contact" },
+    { name: "Contact", href: "/contact", id: "contact" },
   ];
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     const isHomePage = window.location.pathname === "/";
     const isServicesPage = window.location.pathname === "/services";
+    const isContactPage = window.location.pathname === "/contact";
     const isHashLink = href.startsWith("#") || href.includes("#") || href === "/";
     
     if (isHomePage && isHashLink) {
@@ -123,6 +126,12 @@ export default function Navbar() {
         });
       }
     } else if (isServicesPage && href === "/services") {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else if (isContactPage && href === "/contact") {
       e.preventDefault();
       window.scrollTo({
         top: 0,

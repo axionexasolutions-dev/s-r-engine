@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Phone, Menu, MapPin, Sun, Moon, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet";
@@ -12,6 +13,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("hero");
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const pathname = usePathname();
 
   // Handle hydration safe client theme mounting
   useEffect(() => {
@@ -37,11 +39,15 @@ export default function Navbar() {
         setIsScrolled(false);
       }
 
+      if (pathname !== "/") {
+        return;
+      }
+
       const sections = ["hero", "about", "services", "contact"];
       const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
-        const el = document.getElementById(section === "services" ? "services" : section);
+        const el = document.getElementById(section);
         if (el) {
           const top = el.offsetTop;
           const height = el.offsetHeight;
@@ -53,9 +59,18 @@ export default function Navbar() {
       }
     };
 
+    if (pathname === "/services") {
+      setActiveSection("services");
+    } else if (pathname === "/about") {
+      setActiveSection("about");
+    } else if (pathname === "/") {
+      setActiveSection("hero");
+    }
+
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   const toggleTheme = () => {
     if (theme === "light") {
@@ -71,25 +86,46 @@ export default function Navbar() {
 
   // Navlinks mapping specified by the user
   const navLinks = [
-    { name: "Home", href: "#hero", id: "hero" },
-    { name: "About", href: "#about", id: "about" },
-    { name: "Service", href: "#services", id: "services" },
-    { name: "Contact", href: "#contact", id: "contact" },
+    { name: "Home", href: "/", id: "hero" },
+    { name: "About", href: "/about", id: "about" },
+    { name: "Service", href: "/services", id: "services" },
+    { name: "Contact", href: "/#contact", id: "contact" },
   ];
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const targetId = href.replace("#", "");
-    const elem = document.getElementById(targetId);
-    if (elem) {
-      const offset = 80; // height of sticky navbar
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elemRect = elem.getBoundingClientRect().top;
-      const elemPosition = elemRect - bodyRect;
-      const offsetPosition = elemPosition - offset;
+    const isHomePage = window.location.pathname === "/";
+    const isServicesPage = window.location.pathname === "/services";
+    const isHashLink = href.startsWith("#") || href.includes("#") || href === "/";
+    
+    if (isHomePage && isHashLink) {
+      e.preventDefault();
+      
+      if (href === "/") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+        return;
+      }
+      
+      const targetId = href.includes("#") ? href.split("#")[1] : href;
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        const offset = 80; // height of sticky navbar
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elemRect = elem.getBoundingClientRect().top;
+        const elemPosition = elemRect - bodyRect;
+        const offsetPosition = elemPosition - offset;
 
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    } else if (isServicesPage && href === "/services") {
+      e.preventDefault();
       window.scrollTo({
-        top: offsetPosition,
+        top: 0,
         behavior: "smooth",
       });
     }
@@ -132,7 +168,11 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           {/* Logo */}
-          <Link href="#hero" className="flex items-center gap-2 group cursor-pointer">
+          <Link 
+            href="/" 
+            onClick={(e) => handleScrollTo(e as unknown as React.MouseEvent<HTMLAnchorElement>, "/")}
+            className="flex items-center gap-2 group cursor-pointer"
+          >
             <div className="relative w-12 h-10 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md group-hover:scale-105 transition-transform duration-300 flex items-center justify-center bg-white cursor-pointer">
               <Image
                 src="/assets/logo/logo.jpeg"
@@ -157,7 +197,7 @@ export default function Navbar() {
             {/* Desktop Navigation Links */}
             <div className="flex items-center space-x-8">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleScrollTo(e, link.href)}
@@ -171,7 +211,7 @@ export default function Navbar() {
                     className={`absolute bottom-0 left-0 w-full h-0.5 bg-secondary transition-transform duration-300 origin-left ${activeSection === link.id ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                       }`}
                   />
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -198,15 +238,15 @@ export default function Navbar() {
               </Button>
 
               {/* Book Diagnostic Button */}
-              <a
-                href="#booking"
-                onClick={(e) => handleScrollTo(e, "#booking")}
+              <Link
+                href="/#booking"
+                onClick={(e) => handleScrollTo(e as unknown as React.MouseEvent<HTMLAnchorElement>, "/#booking")}
                 className="cursor-pointer"
               >
                 <Button className="bg-primary hover:bg-primary/95 text-white dark:bg-primary dark:hover:bg-primary/90 shadow-md shadow-primary/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
                   Book Diagnostic
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -271,7 +311,7 @@ export default function Navbar() {
                   {/* Mobile Links list */}
                   <div className="flex flex-col space-y-4">
                     {navLinks.map((link) => (
-                      <a
+                      <Link
                         key={link.name}
                         href={link.href}
                         onClick={(e) => handleScrollTo(e, link.href)}
@@ -281,7 +321,7 @@ export default function Navbar() {
                           }`}
                       >
                         {link.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -309,15 +349,15 @@ export default function Navbar() {
                   </div>
 
                   {/* CTA button inside drawer */}
-                  <a
-                    href="#booking"
-                    onClick={(e) => handleScrollTo(e, "#booking")}
+                  <Link
+                    href="/#booking"
+                    onClick={(e) => handleScrollTo(e as unknown as React.MouseEvent<HTMLAnchorElement>, "/#booking")}
                     className="block w-full pt-2 cursor-pointer"
                   >
                     <Button className="w-full bg-primary hover:bg-primary/95 text-white flex items-center justify-center gap-1.5 cursor-pointer">
                       Book Diagnostic <ArrowRight className="w-4 h-4" />
                     </Button>
-                  </a>
+                  </Link>
                 </div>
               </SheetContent>
             </Sheet>

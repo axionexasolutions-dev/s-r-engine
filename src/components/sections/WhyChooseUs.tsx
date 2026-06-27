@@ -29,7 +29,7 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section id="why-choose-us" className="bg-background py-12 md:py-20 relative overflow-hidden">
+    <section id="why-choose-us" className="bg-background py-8 md:py-14 relative overflow-hidden">
       {/* Background radial highlight */}
       <div className="absolute bottom-0 right-0 w-[40%] h-[40%] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 

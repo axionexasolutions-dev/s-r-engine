@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle2, ChevronRight, Activity, Cpu, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
@@ -148,14 +149,15 @@ export default function Hero() {
               >
                 Book Diagnostic Scan
               </Button>
-              <Button
-                variant="outline"
-                onClick={() => handleScrollTo("services")}
-                className="border-border text-heading dark:text-white hover:bg-section px-8 py-6 text-base font-semibold transition-all duration-300 flex items-center gap-2 group"
-              >
-                Explore Services
-                <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+              <Link href="/services">
+                <Button
+                  variant="outline"
+                  className="border-border text-heading dark:text-white hover:bg-section px-8 py-6 text-base font-semibold transition-all duration-300 flex items-center gap-2 group cursor-pointer"
+                >
+                  Explore Services
+                  <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
             </motion.div>
 
             {/* Trust and Stats */}

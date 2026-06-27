@@ -8,20 +8,26 @@ import { Phone, Mail, MapPin, Clock, ArrowUpRight } from "lucide-react";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault();
-    const elem = document.getElementById(targetId);
-    if (elem) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elemRect = elem.getBoundingClientRect().top;
-      const elemPosition = elemRect - bodyRect;
-      const offsetPosition = elemPosition - offset;
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const isHomePage = window.location.pathname === "/";
+    const isHashLink = href.startsWith("#") || href.includes("#");
+    
+    if (isHomePage && isHashLink) {
+      e.preventDefault();
+      const targetId = href.includes("#") ? href.split("#")[1] : href;
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        const offset = 80;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elemRect = elem.getBoundingClientRect().top;
+        const elemPosition = elemRect - bodyRect;
+        const offsetPosition = elemPosition - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
@@ -64,19 +70,19 @@ export default function Footer() {
             <h4 className="text-sm font-bold text-white uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-2.5 text-sm">
               {[
-                { name: "About", id: "about" },
-                { name: "Service", id: "services" },
-                { name: "Contact", id: "contact" },
-                { name: "Book Diagnostic", id: "booking" },
+                { name: "About", href: "/about" },
+                { name: "Service", href: "/services" },
+                { name: "Contact", href: "/#contact" },
+                { name: "Book Diagnostic", href: "/#booking" },
               ].map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={`#${link.id}`}
-                    onClick={(e) => handleScrollTo(e, link.id)}
+                  <Link
+                    href={link.href}
+                    onClick={(e) => handleScrollTo(e, link.href)}
                     className="hover:text-secondary hover:underline transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

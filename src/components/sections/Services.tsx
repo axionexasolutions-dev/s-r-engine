@@ -16,6 +16,7 @@ import {
   Wind,
   ChevronRight
 } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function Services() {
@@ -111,7 +112,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="bg-section  py-12 md:py-20 relative overflow-hidden">
+    <section id="services" className="bg-section py-8 md:py-14 relative overflow-hidden">
       {/* Decorative Blur */}
       <div className="absolute top-1/2 left-0 w-[20%] h-[30%] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -178,13 +179,14 @@ export default function Services() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mt-12 text-center"
         >
-          <Button
-            onClick={handleScrollToBooking}
-            className="bg-primary hover:bg-primary/95 text-white px-8 py-6 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 cursor-pointer inline-flex items-center gap-2 group"
-          >
-            <span>View All Services</span>
-            <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-          </Button>
+          <Link href="/services">
+            <Button
+              className="bg-primary hover:bg-primary/95 text-white px-8 py-6 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 cursor-pointer inline-flex items-center gap-2 group"
+            >
+              <span>View All Services</span>
+              <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </motion.div>
 
         

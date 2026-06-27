@@ -121,7 +121,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="bg-section py-12 md:py-20 relative overflow-hidden select-none">
+    <section id="testimonials" className="bg-section py-8 md:py-14 relative overflow-hidden select-none">
       {/* Background radial highlights */}
       <div className="absolute top-1/4 right-0 w-[30%] h-[30%] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 left-0 w-[30%] h-[30%] bg-primary/5 rounded-full blur-3xl pointer-events-none" />

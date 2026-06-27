@@ -56,7 +56,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-background py-12 md:py-18 relative overflow-hidden select-none">
+    <section id="faq" className="bg-background py-8 md:py-14 relative overflow-hidden select-none">
       {/* Background Accent Gradients */}
       <div className="absolute top-1/2 left-0 w-[25%] h-[40%] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[20%] h-[30%] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />

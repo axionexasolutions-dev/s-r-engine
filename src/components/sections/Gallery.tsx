@@ -68,7 +68,7 @@ export default function Gallery() {
   };
 
   return (
-    <section id="gallery" className="bg-background py-12 md:py-20 relative overflow-hidden">
+    <section id="gallery" className="bg-background py-8 md:py-14 relative overflow-hidden">
       {/* Decorative background blurs */}
       <div className="absolute top-0 left-0 w-[30%] h-[30%] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[30%] h-[30%] bg-primary/5 rounded-full blur-3xl pointer-events-none" />

@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Calendar, Wrench, ShieldCheck, ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 export default function HowItWorks() {
@@ -36,20 +37,10 @@ export default function HowItWorks() {
     },
   ];
 
-  const handleScrollToBooking = () => {
-    const elem = document.getElementById("booking");
-    if (elem) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elemRect = elem.getBoundingClientRect().top;
-      const elemPosition = elemRect - bodyRect;
-      const offsetPosition = elemPosition - offset;
+  const router = useRouter();
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+  const handleBookClick = () => {
+    router.push("/book");
   };
 
   return (
@@ -145,7 +136,7 @@ export default function HowItWorks() {
           className="mt-16 text-center"
         >
           <Button
-            onClick={handleScrollToBooking}
+            onClick={handleBookClick}
             className="bg-primary hover:bg-primary/95 text-white px-8 py-6 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 cursor-pointer inline-flex items-center gap-2 group"
           >
             <span>Book Your Slot Today</span>

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle, Phone } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 export default function FAQ() {
@@ -39,20 +40,10 @@ export default function FAQ() {
     setOpenIndex((prev) => (prev === index ? null : index));
   };
 
-  const handleScrollToBooking = () => {
-    const elem = document.getElementById("booking");
-    if (elem) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elemRect = elem.getBoundingClientRect().top;
-      const elemPosition = elemRect - bodyRect;
-      const offsetPosition = elemPosition - offset;
+  const router = useRouter();
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+  const handleBookClick = () => {
+    router.push("/book");
   };
 
   return (
@@ -92,7 +83,7 @@ export default function FAQ() {
               
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <Button 
-                  onClick={handleScrollToBooking}
+                  onClick={handleBookClick}
                   className="bg-primary hover:bg-primary/95 text-white text-xs font-bold py-5 px-5 rounded-xl flex-grow shadow-md transition-all cursor-pointer"
                 >
                   Book Diagnosis

@@ -17,6 +17,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 export default function Services() {
@@ -26,6 +27,12 @@ export default function Services() {
       icon: Cpu,
       color: "from-blue-500/10 to-indigo-500/10 text-blue-600 dark:text-blue-400",
       hoverBg: "hover:bg-blue-500/[0.03] dark:hover:bg-blue-500/[0.08] hover:border-blue-500/30",
+    },
+    {
+      title: "Mobile Diagnostics",
+      icon: Cpu,
+      color: "from-indigo-500/10 to-purple-500/10 text-indigo-600 dark:text-indigo-400",
+      hoverBg: "hover:bg-indigo-500/[0.03] dark:hover:bg-indigo-500/[0.08] hover:border-indigo-500/30",
     },
     {
       title: "MOT Testing",
@@ -52,22 +59,10 @@ export default function Services() {
       hoverBg: "hover:bg-violet-500/[0.03] dark:hover:bg-violet-500/[0.08] hover:border-violet-500/30",
     },
     {
-      title: "Tyre Repairs",
-      icon: Gauge,
-      color: "from-cyan-500/10 to-sky-500/10 text-cyan-600 dark:text-cyan-400",
-      hoverBg: "hover:bg-cyan-500/[0.03] dark:hover:bg-cyan-500/[0.08] hover:border-cyan-500/30",
-    },
-    {
       title: "Engine Servicing",
       icon: Wrench,
       color: "from-blue-600/10 to-cyan-600/10 text-primary dark:text-blue-400",
       hoverBg: "hover:bg-primary/[0.03] dark:hover:bg-primary/[0.08] hover:border-primary/30",
-    },
-    {
-      title: "Car Headlight Restoration & Polishing",
-      icon: Sparkles,
-      color: "from-yellow-500/10 to-amber-500/10 text-yellow-600 dark:text-yellow-400",
-      hoverBg: "hover:bg-yellow-500/[0.03] dark:hover:bg-yellow-500/[0.08] hover:border-yellow-500/30",
     },
     {
       title: "General Vehicle Repairs",
@@ -87,28 +82,12 @@ export default function Services() {
       color: "from-pink-500/10 to-rose-500/10 text-secondary dark:text-pink-400",
       hoverBg: "hover:bg-secondary/[0.03] dark:hover:bg-secondary/[0.08] hover:border-secondary/30",
     },
-    {
-      title: "Air Conditioning Regas & Service",
-      icon: Wind,
-      color: "from-teal-500/10 to-blue-500/10 text-teal-600 dark:text-teal-400",
-      hoverBg: "hover:bg-teal-500/[0.03] dark:hover:bg-teal-500/[0.08] hover:border-teal-500/30",
-    },
   ];
 
-  const handleScrollToBooking = () => {
-    const elem = document.getElementById("booking");
-    if (elem) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elemRect = elem.getBoundingClientRect().top;
-      const elemPosition = elemRect - bodyRect;
-      const offsetPosition = elemPosition - offset;
+  const router = useRouter();
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+  const handleServiceClick = (serviceTitle: string) => {
+    router.push(`/book?service=${encodeURIComponent(serviceTitle)}`);
   };
 
   return (
@@ -159,7 +138,7 @@ export default function Services() {
               transition={{ duration: 0.4, delay: index * 0.05 }}
               whileHover={{ y: -6, scale: 1.02 }}
               className={`group relative p-6 bg-card border border-border rounded-2xl cursor-pointer transition-all duration-300 ${service.hoverBg} shadow-sm hover:shadow-md flex flex-col justify-start overflow-hidden h-full`}
-              onClick={handleScrollToBooking}
+              onClick={() => handleServiceClick(service.title)}
             >
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 shadow-sm`}>
                 <service.icon className="w-6 h-6" />

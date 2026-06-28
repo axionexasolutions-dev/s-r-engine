@@ -50,6 +50,16 @@ export default function ServicesPage() {
       highlights: ["OEM Dealer Software", "Live Data Telemetry", "ECU Remapping & Coding"]
     },
     {
+      title: "Mobile Diagnostics",
+      category: "Diagnostics & Electrical",
+      icon: Cpu,
+      image: "/assets/services/mobile_diagnostics.png",
+      color: "from-indigo-500/10 to-purple-500/10 text-indigo-600 dark:text-indigo-400",
+      borderHover: "group-hover:border-indigo-500/30",
+      description: "We bring dealer-grade diagnostics straight to your home, workplace, or roadside. Our mobile unit is fully equipped with advanced OBD-II diagnostic scanners and live telemetry logging tools to identify engine, transmission, ABS, airbag, and electrical faults on-site.",
+      highlights: ["On-Site Diagnostic Sweep", "Fault Code Clearance", "Module & Sensor Calibration"]
+    },
+    {
       title: "MOT Testing",
       category: "Maintenance & Servicing",
       icon: ClipboardCheck,
@@ -90,16 +100,6 @@ export default function ServicesPage() {
       highlights: ["Struts & Coilovers", "Steering Rack Overhaul", "Knocking Sound Elimination"]
     },
     {
-      title: "Tyre Repairs",
-      category: "Repairs & Tyres",
-      icon: Gauge,
-      image: "/assets/services/tyre_repairs.png",
-      color: "from-cyan-500/10 to-sky-500/10 text-cyan-600 dark:text-cyan-400",
-      borderHover: "group-hover:border-cyan-500/30",
-      description: "We offer professional puncture repairs, high-speed wheel balancing, and premium brand tyre replacements. Our alloy-safe mounting hardware ensures clean installations, preventing vibration and maximizing the lifetime of your tyres.",
-      highlights: ["Digital Wheel Balancing", "Alloy-Safe Fitting", "Puncture Leak Seal Repairs"]
-    },
-    {
       title: "Engine Servicing",
       category: "Maintenance & Servicing",
       icon: Wrench,
@@ -108,16 +108,6 @@ export default function ServicesPage() {
       borderHover: "group-hover:border-primary/30",
       description: "Comprehensive servicing packages tailored to manufacturer guidelines. We replace engine oil using premium synthetic oil, install new oil filters, cabin filters, air filters, and spark plugs, and perform a full visual and mechanical safety check.",
       highlights: ["Premium Synthetic Oil Flush", "OEM Specification Filters", "Multi-Point Service Stamp"]
-    },
-    {
-      title: "Car Headlight Restoration & Polishing",
-      category: "Diagnostics & Electrical",
-      icon: Sparkles,
-      image: "/assets/services/headlight_polishing.png",
-      color: "from-yellow-500/10 to-amber-500/10 text-yellow-600 dark:text-yellow-400",
-      borderHover: "group-hover:border-yellow-500/30",
-      description: "We restore yellowed, cloudy, oxidized headlight lenses to crystal-clear clarity. Using a multi-stage wet sanding, compounding, and machine polishing process, we dramatically improve night visibility and restore a premium aesthetic.",
-      highlights: ["UV Protection Sealant", "Improves Night Visibility", "Passes MOT Haze Checks"]
     },
     {
       title: "General Vehicle Repairs",
@@ -148,16 +138,6 @@ export default function ServicesPage() {
       borderHover: "group-hover:border-pink-500/30",
       description: "Browse our hand-picked inventory of fully inspected and certified pre-owned cars. Every vehicle is deep-cleaned, mechanically verified, and comes with a fresh MOT and detailed service history for complete peace of mind.",
       highlights: ["HPI Clear Reports", "12-Month MOT Included", "Multi-Point Safety Inspected"]
-    },
-    {
-      title: "Air Conditioning Regas & Service",
-      category: "Diagnostics & Electrical",
-      icon: Wind,
-      image: "/assets/services/ac_service.png",
-      color: "from-teal-500/10 to-blue-500/10 text-teal-600 dark:text-teal-400",
-      borderHover: "group-hover:border-teal-500/30",
-      description: "We test for leaks, vacuum the system, and refill A/C refrigerant gas (both classic R134a and modern R1234yf). We also top up compressor lubricants and sanitize vents to remove bacteria, bad odors, and restore ice-cold air.",
-      highlights: ["R134a & R1234yf Gas", "Vacuum Leak Checks", "Vent Sanitization Service"]
     }
   ];
 
@@ -322,7 +302,7 @@ export default function ServicesPage() {
 
                         {/* Card actions */}
                         <div className="flex gap-2.5 pt-4">
-                          <Link href="/#booking" className="flex-1">
+                          <Link href={`/book?service=${encodeURIComponent(service.title)}`} className="flex-1">
                             <Button className="w-full bg-primary hover:bg-primary/95 text-white font-bold h-10 shadow-sm cursor-pointer">
                               Book Service
                             </Button>
@@ -372,7 +352,7 @@ export default function ServicesPage() {
               Modern vehicles store error codes when faults arise. Save time and money by booking our dealer-level ECU Diagnostic Scan. We will pinpoint the exact fault before executing any repairs.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href="/#booking">
+              <Link href="/book?service=Engine%20Diagnostics">
                 <Button className="bg-primary hover:bg-primary/95 text-white px-8 py-6 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 cursor-pointer inline-flex items-center gap-2 group">
                   <span>Book Diagnostic Scan</span>
                   <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />

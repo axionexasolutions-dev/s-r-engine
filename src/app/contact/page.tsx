@@ -36,12 +36,11 @@ export default function ContactPage() {
 
   const subjects = [
     "Engine Diagnostics",
+    "Mobile Diagnostics",
     "MOT Testing & Repairs",
     "Brake Service & Repairs",
     "Suspension & Steering",
-    "Tyre & Wheel Services",
     "Engine Servicing & Maintenance",
-    "Air Conditioning Regas",
     "Other Mechanical Inquiry"
   ];
 
@@ -77,14 +76,34 @@ export default function ContactPage() {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     setIsSubmitting(true);
 
-    // Mock API submission delay
-    setTimeout(() => {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          regNumber: formData.regNumber,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "Failed to submit contact message");
+      }
+
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({
@@ -95,7 +114,14 @@ export default function ContactPage() {
         subject: "Engine Diagnostics",
         message: ""
       });
-    }, 1800);
+    } catch (err: any) {
+      console.error(err);
+      setErrors((prev) => ({
+        ...prev,
+        submit: err.message || "An unexpected error occurred. Please try again.",
+      }));
+      setIsSubmitting(false);
+    }
   };
 
   const contactDetails = [
@@ -134,8 +160,8 @@ export default function ContactPage() {
       icon: Clock,
       title: "Opening Hours",
       details: [
-        "Monday - Friday: 8:00 AM - 6:00 PM",
-        "Saturday: 8:00 AM - 4:00 PM",
+        "Monday - Friday: 9:00 AM - 5:00 PM",
+        "Saturday: 10:00 AM - 3:00 PM",
         "Sunday: Closed"
       ],
       linkText: null,
@@ -391,6 +417,11 @@ export default function ContactPage() {
                       </div>
 
                       {/* Submit button */}
+                      {errors.submit && (
+                        <p className="text-xs text-destructive font-semibold flex items-center gap-1.5 pb-2">
+                          <AlertCircle className="w-4 h-4 shrink-0" /> {errors.submit}
+                        </p>
+                      )}
                       <Button
                         type="submit"
                         disabled={isSubmitting}

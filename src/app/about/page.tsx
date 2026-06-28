@@ -223,7 +223,7 @@ export default function AboutPage() {
             Stop worrying about flashing warning lights or mysterious engine faults. Book your diagnostic session today or speak directly to a specialist.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Link href="/#booking">
+            <Link href="/book">
               <Button className="bg-primary hover:bg-primary/95 text-white px-8 py-6 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 cursor-pointer inline-flex items-center gap-2 group">
                 <span>Book Diagnostic Scan</span>
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />

@@ -248,8 +248,7 @@ export default function Navbar() {
 
               {/* Book Diagnostic Button */}
               <Link
-                href="/#booking"
-                onClick={(e) => handleScrollTo(e as unknown as React.MouseEvent<HTMLAnchorElement>, "/#booking")}
+                href="/book"
                 className="cursor-pointer"
               >
                 <Button className="bg-primary hover:bg-primary/95 text-white dark:bg-primary dark:hover:bg-primary/90 shadow-md shadow-primary/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
@@ -359,8 +358,7 @@ export default function Navbar() {
 
                   {/* CTA button inside drawer */}
                   <Link
-                    href="/#booking"
-                    onClick={(e) => handleScrollTo(e as unknown as React.MouseEvent<HTMLAnchorElement>, "/#booking")}
+                    href="/book"
                     className="block w-full pt-2 cursor-pointer"
                   >
                     <Button className="w-full bg-primary hover:bg-primary/95 text-white flex items-center justify-center gap-1.5 cursor-pointer">
